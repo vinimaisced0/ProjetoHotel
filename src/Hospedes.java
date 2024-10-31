@@ -4,16 +4,16 @@ import java.util.List;
 public class Hospedes {
 
     private String nome;
-    private int cpf;
+    private String cpf;
     private int datanascimento;
     private String endereco;
-    private int telefone;
+    private String telefone;
     private int dataHospedagem;
 
 
     private List<Estadia> historicoEstadias;
 
-    public Hospedes(String nome, int cpf, int datanascimento, String endereco, int telefone) {
+    public Hospedes(String nome, String cpf, int datanascimento, String endereco, String telefone) {
         this.nome = nome;
         this.cpf = cpf;
         this.datanascimento = datanascimento;
@@ -48,11 +48,11 @@ public class Hospedes {
         this.nome = nome;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -72,14 +72,23 @@ public class Hospedes {
         this.endereco = endereco;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+
+    @Override
+    public String toString() {
+        return "Hóspede{" +
+                "Nome='" + nome + '\'' +
+                ", CPF='" + cpf + '\'' +
+                ", Data de Nascimento='" + datanascimento + '\'' +
+                ", Endereço='" + endereco + '\'' +
+                ", Telefone='" + telefone + '\'' +
+                '}';
+    }
 }
-
-
 

@@ -1,44 +1,71 @@
+import javax.swing.*;
+
 public class Validar {
 
+    public Validar() {
+        super();
+    }
 
-    public static void validarCPF(String cpf) throws CPFException {
-        cpf = cpf.replaceAll("[^0-9]", "");
 
-        if (cpf.length() != 11) {
-            throw new CPFException("CPF deve ter 11 dígitos.");
-        }
+    public void validaCPF(String CPF) throws CPFException {
+        int[] CpfArray = CPFtoArray(CPF);
 
-        if (cpf.chars().distinct().count() == 1) {
-            throw new CPFException("CPF não pode ter todos os dígitos iguais.");
-        }
-
-        int soma = 0;
-        int peso = 10;
-
-        for (int i = 0; i < 9; i++) {
-            soma += (cpf.charAt(i) - '0') * peso--;
-        }
-
-        int digito1 = 11 - (soma % 11);
-        digito1 = (digito1 >= 10) ? 0 : digito1;
-
-        if (digito1 != (cpf.charAt(9) - '0')) {
-            throw new CPFException("CPF inválido.");
-        }
-
-        soma = 0;
-        peso = 11;
-
-        for (int i = 0; i < 10; i++) {
-            soma += (cpf.charAt(i) - '0') * peso--;
-        }
-
-        int digito2 = 11 - (soma % 11);
-        digito2 = (digito2 >= 10) ? 0 : digito2;
-
-        if (digito2 != (cpf.charAt(10) - '0')) {
-            throw new CPFException("CPF inválido.");
+        // Verifica se o CPF é válido
+        if (verificaCodigo(1, CpfArray)) {
+            System.out.println("O CPF é válido");
+        } else {
+            throw new CPFException("O CPF é inválido"); // lança a exceção se o CPF não for válido
         }
     }
 
+    // Transforma o CPF em um vetor
+    private int[] CPFtoArray(String CPF) {
+        int[] CpfArray = new int[11];
+        for (int i = 0; i < 11; i++) { // Corrigido para i < 11
+            CpfArray[i] = Integer.parseInt(String.valueOf(CPF.charAt(i)));
+        }
+        return CpfArray;
+    }
+
+    // Verifica o Código
+    private boolean verificaCodigo(int posicaoCodigo, int[] Cpf) {
+        int j = 0;
+        if (posicaoCodigo == 1) {
+            j = 10;
+        } else {
+            j = 11;
+        }
+
+        int indexParameter = 7 + posicaoCodigo;
+
+        int resultado = 0;
+        for (int i = 0; i <= indexParameter; i++) {
+            resultado += j * Cpf[i];
+            j--;
+        }
+
+        int restoDiv = resultado % 11;
+        if (restoDiv < 2) {
+            if (Cpf[indexParameter + 1] == 0) {
+                if (posicaoCodigo == 1) {
+                    return verificaCodigo(2, Cpf);
+                } else {
+                    return true;
+                }
+            } else {
+                return false;
+            }
+        } else {
+            int dif = 11 - restoDiv;
+            if (Cpf[indexParameter + 1] == dif) {
+                if (posicaoCodigo == 1) {
+                    return verificaCodigo(2, Cpf);
+                } else {
+                    return true;
+                }
+            } else {
+                return false;
+            }
+        }
+    }
 }
