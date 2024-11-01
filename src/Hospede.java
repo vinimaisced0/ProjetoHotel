@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Hospedes {
+public class Hospede {
 
     private String nome;
     private String cpf;
@@ -13,15 +13,20 @@ public class Hospedes {
 
     private List<Estadia> historicoEstadias;
 
-    public Hospedes(String nome, String cpf, int datanascimento, String endereco, String telefone) {
+    public Hospede(String nome, String cpf, int datanascimento, String endereco, String telefone) {
         this.nome = nome;
         this.cpf = cpf;
         this.datanascimento = datanascimento;
         this.endereco = endereco;
         this.telefone = telefone;
-        this.dataHospedagem = dataHospedagem;
         this.historicoEstadias = new ArrayList<>();
     }
+
+    public Hospede(String cpf) {
+        this.cpf = cpf;
+        this.historicoEstadias = new ArrayList<>();
+    }
+
 
     public void adicionarEstadia(Estadia estadia) {
         historicoEstadias.add(estadia);

@@ -3,26 +3,26 @@ import java.util.Scanner;
 
 public class GerenciaHospedes {
 
-    private ArrayList<Hospedes> hospedes;
+    private ArrayList<Hospede> hospedes;
 
     public GerenciaHospedes() {
         hospedes = new ArrayList<>();
     }
 
-    public void adicionarHospede(Hospedes hospede) {
+    public void adicionarHospede(Hospede hospede) {
         hospedes.add(hospede);
         System.out.println("Novo Hóspede cadastrado com sucesso!");
 
     }
 
     public void criarEcadastrarHospede(String nome, String cpf, int datanascimento, String endereco, String telefone) {
-        Hospedes novoHospede = new Hospedes(nome, cpf, datanascimento, endereco, telefone);
+        Hospede novoHospede = new Hospede(nome, cpf, datanascimento, endereco, telefone);
         adicionarHospede(novoHospede);
 
     }
 
     public void adicionarEstadiaHospede(String nome, String dataHospedagem, int numeroQuarto, int duracao){
-        for (Hospedes hospede : hospedes) {
+        for (Hospede hospede : hospedes) {
             if (hospede.getNome().equals(nome)) {
                 Estadia novaEstadia = new Estadia(dataHospedagem, numeroQuarto, duracao);
                 hospede.adicionarEstadia(novaEstadia);
@@ -39,10 +39,10 @@ public class GerenciaHospedes {
         if (hospedes.isEmpty()) {
             System.out.println("Nenhum hóspede cadastrado.");
         } else {
-            for (Hospedes hospedes1 : hospedes) {
-                if (hospedes1.getNome().equals(nome)) {
+            for (Hospede hospede1 : hospedes) {
+                if (hospede1.getNome().equals(nome)) {
                     System.out.println("Histórico de estadias de " + nome + ":");
-                    for (Estadia estadia : hospedes1.getHistoricoEstadias()) {
+                    for (Estadia estadia : hospede1.getHistoricoEstadias()) {
                         System.out.println(estadia);
                     }
                 }
@@ -55,14 +55,14 @@ public class GerenciaHospedes {
         if (hospedes.isEmpty()) {
             System.out.println("Nenhum hóspede cadastrado.");
         } else {
-            for (Hospedes hospedes1 : hospedes) {
-                System.out.println(hospedes1);
+            for (Hospede hospede1 : hospedes) {
+                System.out.println(hospede1);
             }
         }
     }
 
     public void editarHospede(String nome) {
-        for (Hospedes hospede : hospedes) {
+        for (Hospede hospede : hospedes) {
             if (hospede.getNome().equals(nome)) {
                 Scanner scanner = new Scanner(System.in);
                 int opcao;

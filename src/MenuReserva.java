@@ -10,7 +10,7 @@ public class MenuReserva {
         this.scanner = new Scanner(System.in);
     }
 
-    public void exibirMenu() {
+    public void exibirMenuReserva() {
         int opcao;
 
         do {

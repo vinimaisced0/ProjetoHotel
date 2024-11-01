@@ -2,19 +2,19 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        GerenciaQuartos gerenciaQuartos = new GerenciaQuartos();
+        MenuQuarto menuQuarto = new MenuQuarto();
         GerenciaHospedes gerenciaHospedes = new GerenciaHospedes();
         GerenciaReserva gerenciaReserva = new GerenciaReserva();
+        GerenciaFuncionario gerenciaFuncionario = new GerenciaFuncionario();
         Scanner scanner = new Scanner(System.in);
         int opcao;
 
         do {
             System.out.println("\nMenu:");
-            System.out.println("1. Gerenciamento de Quartos");
+            System.out.println("1. Gerenciamento de QuartosCheck-in/Out");
             System.out.println("2. Gerenciamento de Hóspedes");
             System.out.println("3. Gerenciamento de Reservas");
             System.out.println("4. Gerenciamento de Funcionários");
-            System.out.println("5. Check-In / Check-Out");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
@@ -22,8 +22,7 @@ public class Main {
 
             switch (opcao) {
                 case 1:
-                    MenuQuarto menuQuarto = new MenuQuarto(gerenciaQuartos);
-                    menuQuarto.exibirMenu();
+                    menuQuarto.exibirMenuQuarto();
                     break;
                 case 2:
                     MenuHospede menuHospede = new MenuHospede(gerenciaHospedes);
@@ -31,8 +30,16 @@ public class Main {
                     break;
                 case 3:
                     MenuReserva menuReserva = new MenuReserva(gerenciaReserva);
-                    menuReserva.exibirMenu();
+                    menuReserva.exibirMenuReserva();
                     break;
+
+                case 4:
+                    MenuFuncionario menuFuncionario = new MenuFuncionario(gerenciaFuncionario);
+                    menuFuncionario.exibirMenuFuncionarios();
+
+                case 0:
+                    System.out.println("Saindo.... cuidja...");
+
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
                     break;
